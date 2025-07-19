@@ -2,14 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-// import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 import userRoute from "./routes/user.route.js";
 
 const app=express();
 dotenv.config();
 // middleware
 app.use(express.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(cors());
 
 const PORT = process.env.PORT || 4001;
@@ -23,7 +23,7 @@ try {
 }
 
 //routes
-app.use("/user",userRoute);
+app.use("/api/user",userRoute);
 //app.use("https://localhost:4002/user", userRoute);
 
 app.listen(PORT, () => {

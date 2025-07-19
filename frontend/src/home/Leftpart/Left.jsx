@@ -6,7 +6,9 @@ function Left() {
   return (
     <div className='w-[30%] text-gray-300 bg-black'>
       <Search/>
-      <Users/>
+      <div className="felx-1 overflow-y-auto" style={{maxHeight:"calc(84vh - 8vh)"}}>
+        <Users/>
+      </div>
       <Logout/>
     </div>
   )

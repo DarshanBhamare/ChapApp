@@ -16,7 +16,7 @@ function Login() {
             email:data.email,
             password:data.password
         }
-        axios.post("http://localhost:4002/User/login",userInfo)
+        axios.post("/api/user/login",userInfo)
         .then((response)=>{
             console.log(response.data);
             if(response.data){

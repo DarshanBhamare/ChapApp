@@ -42,7 +42,7 @@ export const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!user || !isMatch) {
       return res.status(400).json({ error: "Invalid user credential" });
-    }
+    } 
     createTokenAndSaveCookie(user._id, res);
     res.status(201).json({
       message: "User logged in successfully",
@@ -67,14 +67,16 @@ export const logout = async (req, res) => {
   }
 };
 
-// export const allUsers = async (req, res) => {
-//   try {
-//     const loggedInUser = req.user._id;
-//     const filteredUsers = await User.find({
-//       _id: { $ne: loggedInUser },
-//     }).select("-password");
-//     res.status(201).json(filteredUsers);
-//   } catch (error) {
-//     console.log("Error in allUsers Controller: " + error);
-//   }
-// };
+export const allUsers = async (req, res) => {
+    try{
+      const loggedInUser=req.user._id;
+      const filteredUsers=await User.find({_id:{$ne:loggedInUser},
+      }).select("-password");
+      res.status(201).json(
+        filteredUsers
+      );
+    }
+    catch(error){
+      console.log("Error in allUsers Controller:"+error);
+    }
+};
